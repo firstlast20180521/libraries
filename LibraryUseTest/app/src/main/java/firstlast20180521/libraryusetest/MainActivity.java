@@ -1,4 +1,4 @@
-package firstlast20180521.libraries;
+package firstlast20180521.libraryusetest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,9 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Debug.print("＊＊＊＊＊＊＊＊＊＊＊＊＊");
-
-        System.out.println("パッケージ名===>" + getPackageName());
+        Debug.print("これはテストです。");
 
     }
 }
