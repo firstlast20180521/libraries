@@ -64,7 +64,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/firstlast20180521/libraries")
             credentials {
                 username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-                print "===>" + "${username}" + "<==="
+                //print "===>" + "${username}" + "<==="
                 password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
             }
         }
