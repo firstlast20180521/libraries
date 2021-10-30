@@ -2,6 +2,8 @@ package firstlast20180521.utilities;
 
 import android.util.Log;
 
+import java.util.Locale;
+
 public class Debug {
 
     //所謂オーバーロードというもの
@@ -10,42 +12,38 @@ public class Debug {
     }
 
     public static void print(String text) {
+        int length = Thread.currentThread().getStackTrace().length;
 
-        ////呼び出し元のクラス名、メソッド名を取得
-        //int length = Thread.currentThread().getStackTrace().length;
-        //
-        //for (int j = 0; j < length; j++) {
-        //
-        //    String className = Thread.currentThread().getStackTrace()[j].getClassName();
-        //
-        //    System.out.println(String.format("j===>%d, className===>%s, Method===>%s"
-        //            , j
-        //            , Thread.currentThread().getStackTrace()[j].getClassName()
-        //            , Thread.currentThread().getStackTrace()[j].getMethodName()
-        //    ));
-        //
-        //}
+//        System.out.println("start-------------------------------------------start");
+//        for (int i = 0; i < length; i++) {
+//            System.out.println(String.format(Locale.JAPAN, "j===>%d, className===>%s, Method===>%s"
+//                    , i
+//                    , Thread.currentThread().getStackTrace()[i].getClassName()
+//                    , Thread.currentThread().getStackTrace()[i].getMethodName()
+//                    )
+//            );
+//
+//        }
+//        System.out.println("end-----------------------------------------------end!");
 
-        //int i = min(3, Thread.currentThread().getStackTrace().length - 1 );
-        if (text == "") {
-            String location = String.format("<%s>.<%s>"
-                    , Thread.currentThread().getStackTrace()[4].getClassName()
-                    , Thread.currentThread().getStackTrace()[4].getMethodName()
-            );
-            Log.d(location, "ログ:" + text);
+        String className = "";
+        String methodName = "";
 
-        }else{
-            String location = String.format("<%s>.<%s>"
-                    , Thread.currentThread().getStackTrace()[5].getClassName()
-                    , Thread.currentThread().getStackTrace()[5].getMethodName()
-            );
-            Log.d(location, "ログ:" + text);
+        for (int j = length - 1; j > -1; j--) {
+            String tempClassName = Thread.currentThread().getStackTrace()[j].getClassName();
+            String[] x = tempClassName.split("\\.");
+
+            if (x.length > 0) {
+                if (x[0].equals("firstlast20180521")) {
+                    className = tempClassName;
+                    methodName = Thread.currentThread().getStackTrace()[j].getMethodName();
+                    break;
+                }
+            }
 
         }
 
-        //System.out.println(String.format("[%s] %s", location, text));
-
-        return;
+        Log.d(String.format("<%s>.<%s>", className, methodName), "ログ:" + text);
 
     }
 
